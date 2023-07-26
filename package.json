@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/NguyenTrongDat1753038/idvoucherlive.git",
   "author": "Dat Nguyen",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "papaparse": "^5.4.1"
+  }
 }
