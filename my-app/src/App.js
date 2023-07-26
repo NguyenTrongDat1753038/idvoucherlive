@@ -30,10 +30,10 @@ function App () {
       }
     }
   }
-  let firstParam =  input.split('html?')[0];
+  let firstParam =  input != null ? input.split('html?')[0] : "";
   let secondParam = "from=livestream&c=live&liveChannel=";
   let thirdParam = idLive;
-  let fourthParam = firstParam.split('-i')[1].split('-s')[0];
+  let fourthParam = input != null ? firstParam.split('-i')[1].split('-s')[0] : "";
   let finalLink = firstParam + secondParam + thirdParam + fourthParam;
 
   return (
