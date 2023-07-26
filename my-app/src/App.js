@@ -4,9 +4,9 @@ import './App.css';
 import {Box,TextField, Typography,Autocomplete} from '@mui/material'; 
 function App () {
   const [data, setData] = useState({});
-  const [input, setInput] = useState(null);
-  const [host,setHost] = useState(null);
-  const [idLive,setIdLive] = useState(null);
+  const [input, setInput] = useState("");
+  const [host,setHost] = useState("");
+  const [idLive,setIdLive] = useState("");
   const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGtrWsWr1Q8h2BVNB97M8P4J9xiU3R-aBGJOGg3Yj5Y2XJWPgTTYWSuM0v6ZZoWs5I8ZkYGKnVVN1G/pub?output=csv';
   const getListLives = async () => {
     Papa.parse(URL_SHEET, {
