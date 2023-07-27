@@ -26,7 +26,7 @@ function App () {
   let listName = listLives.map(a => a.LiveName);
   const matchIDLive = (param) =>{
     for (let i in listLives){
-      if (listLives[i].LiveName == param){
+      if (listLives[i].LiveName === param){
         setIdLive(listLives[i].IdLive)
       }
     }
@@ -35,15 +35,15 @@ function App () {
   console.log(input);
   const handleClick = () => {
     let pattern =  'html?';
-    if (input.includes(pattern)){
+    if (input.includes(pattern) && host!=""){
       let firstParam =  input.split(pattern)[0];
       let secondParam = "from=livestream&c=live&liveChannel=";
       let thirdParam = idLive;
       let fourthParam = firstParam.split('-i')[1].split('-s')[0];
-      setDesLink(firstParam + secondParam + thirdParam + fourthParam);
+      setDesLink(firstParam + pattern + secondParam + thirdParam + fourthParam);
     }
     else{
-      alert('Nhập đúng cú pháp link');
+      alert('Nhập đúng cú pháp link hoặc chưa chọn host');
     }
   }
 
@@ -76,7 +76,7 @@ function App () {
           '& > :not(style)': { m: 1, width: '80%'},
         }}
         noValidate
-        Autocomplete="off"
+        autoComplete="off"
       >
         <TextField 
           id="outlined-basic" 
@@ -126,7 +126,7 @@ function App () {
         justifyContent="center"
         alignItems="center"
         sx={{
-          '& > :not(style)': { m: 1, width: '30%'},
+          '& > :not(style)': { m: 1, width: '75%'},
         }}
       >
         <Link 
@@ -134,7 +134,7 @@ function App () {
           target="_blank"
           rel="noopener noreferrer"
         >
-            Link đã được tạo. Vui lòng nhấn vào đây để mua hàng.
+          {desLink}
         </Link>
       </Box>
     </div>
