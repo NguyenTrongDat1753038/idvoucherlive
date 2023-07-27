@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/idvoucherlive/static/css/main.073c9b0a.css",
-    "main.js": "/idvoucherlive/static/js/main.daf437fb.js",
+    "main.js": "/idvoucherlive/static/js/main.4a147c26.js",
     "static/js/787.28cb0dcd.chunk.js": "/idvoucherlive/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/idvoucherlive/index.html",
     "main.073c9b0a.css.map": "/idvoucherlive/static/css/main.073c9b0a.css.map",
-    "main.daf437fb.js.map": "/idvoucherlive/static/js/main.daf437fb.js.map",
+    "main.4a147c26.js.map": "/idvoucherlive/static/js/main.4a147c26.js.map",
     "787.28cb0dcd.chunk.js.map": "/idvoucherlive/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.daf437fb.js"
+    "static/js/main.4a147c26.js"
   ]
 }
