@@ -1,12 +1,13 @@
 import { useState,useEffect } from 'react';
 import Papa from 'papaparse';
 import './App.css';
-import {Box,TextField, Typography,Autocomplete} from '@mui/material'; 
+import {Box,TextField, Typography,Autocomplete, Button,Link} from '@mui/material'; 
 function App () {
   const [data, setData] = useState({});
   const [input, setInput] = useState("");
   const [host,setHost] = useState("");
   const [idLive,setIdLive] = useState("");
+  const [desLink,setDesLink] = useState("");
   const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGtrWsWr1Q8h2BVNB97M8P4J9xiU3R-aBGJOGg3Yj5Y2XJWPgTTYWSuM0v6ZZoWs5I8ZkYGKnVVN1G/pub?output=csv';
   const getListLives = async () => {
     Papa.parse(URL_SHEET, {
@@ -30,11 +31,21 @@ function App () {
       }
     }
   }
-  let firstParam =  input != null ? input.split('html?')[0] : "";
-  let secondParam = "from=livestream&c=live&liveChannel=";
-  let thirdParam = idLive;
-  let fourthParam = input != null ? firstParam.split('-i')[1].split('-s')[0] : "";
-  let finalLink = firstParam + secondParam + thirdParam + fourthParam;
+  
+  console.log(input);
+  const handleClick = () => {
+    let pattern =  'html?';
+    if (input.includes(pattern)){
+      let firstParam =  input.split(pattern)[0];
+      let secondParam = "from=livestream&c=live&liveChannel=";
+      let thirdParam = idLive;
+      let fourthParam = firstParam.split('-i')[1].split('-s')[0];
+      setDesLink(firstParam + secondParam + thirdParam + fourthParam);
+    }
+    else{
+      alert('Nhập đúng cú pháp link');
+    }
+  }
 
   return (
     <div className="home">
@@ -97,17 +108,34 @@ function App () {
         justifyContent="center"
         alignItems="center"
         sx={{
-          '& > :not(style)': { m: 1, width: '75%'},
+          '& > :not(style)': { m: 5, width: '25%'},
         }}
-        noValidate
-        Autocomplete="off"
       >
-        <Typography
-          mt = {6}
-          variant='h6'
-          gutterBottom>
-          {finalLink}
-        </Typography>
+        <Button
+          onClick={handleClick}
+          variant='outlined'
+          size='medium'
+          color="error"
+        >
+          Tạo Link
+        </Button>
+      </Box>
+      <Box
+        component="form"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          '& > :not(style)': { m: 1, width: '30%'},
+        }}
+      >
+        <Link 
+          href={desLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+            Link đã được tạo. Vui lòng nhấn vào đây để mua hàng.
+        </Link>
       </Box>
     </div>
   );
