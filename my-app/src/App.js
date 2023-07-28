@@ -2,13 +2,34 @@ import { useState,useEffect } from 'react';
 import Papa from 'papaparse';
 import './App.css';
 import {Box,TextField, Typography,Autocomplete, Button,Link} from '@mui/material'; 
+import {makeStyles} from "@mui/styles"
+
+const useStyles = makeStyles((theme)=>({
+  root:{
+    marginLeft: '10%',
+    marginRight: '10%',
+    backgroundColor: "#faf9e8"
+  },
+  header:{
+    color: "red",
+    display: "flex",
+    justifyContent: "center",
+    alignItems:"center",
+  }
+
+}))
 function App () {
+  //class
+  const classes = useStyles();
+
+  //variable
   const [data, setData] = useState({});
   const [input, setInput] = useState("");
   const [host,setHost] = useState("");
   const [idLive,setIdLive] = useState("");
   const [desLink,setDesLink] = useState("");
   const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGtrWsWr1Q8h2BVNB97M8P4J9xiU3R-aBGJOGg3Yj5Y2XJWPgTTYWSuM0v6ZZoWs5I8ZkYGKnVVN1G/pub?output=csv';
+  
   const getListLives = async () => {
     Papa.parse(URL_SHEET, {
       download: true,
@@ -19,11 +40,14 @@ function App () {
       }
     });
   };
+
   useEffect(() => {
     getListLives();
   },[]);
+
   const listLives = Array.from(data);
   let listName = listLives.map(a => a.LiveName);
+
   const matchIDLive = (param) =>{
     for (let i in listLives){
       if (listLives[i].LiveName === param){
@@ -32,7 +56,6 @@ function App () {
     }
   }
   
-  console.log(input);
   const handleClick = () => {
     let pattern =  'html?';
     if (input.includes(pattern) && host!=""){
@@ -48,24 +71,20 @@ function App () {
   }
 
   return (
-    <div className="home">
+    <div className={classes.root}>
       <Typography 
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        mt = {5}
-        variant='h2'
-        gutterBottom>
+        className={classes.header} 
+        sx={{ fontStyle: 'default', m: 1, fontSize: 'h4.fontSize',fontWeight: 'bold' }}
+        >
           Tạo link áp mã live
       </Typography>
       <Typography 
         display="flex"
         justifyContent="center"
         alignItems="center"
-        mt = {5}
-        variant='h5'
-        gutterBottom>
-          Add link vào ô
+        sx={{ fontStyle: 'oblique', m: 1, fontSize: 'h6.fontSize' }}
+        >
+          Add link vào ô dưới
       </Typography>
       <Box
         component="form"
@@ -81,7 +100,9 @@ function App () {
         <TextField 
           id="outlined-basic" 
           value = {input}
-          variant="outlined" 
+          variant="outlined"
+          multiline
+          maxRows={4}
           onChange = {(e)=> {setInput(e.target.value)}}
         />
       </Box>
@@ -117,7 +138,11 @@ function App () {
           size='medium'
           color="error"
         >
-          Tạo Link
+          <Typography 
+            sx={{ fontStyle: 'default', m: 1, fontSize: 'h6.fontSize', fontWeight: '10px' }}
+            >
+              TẠO LINK
+          </Typography>
         </Button>
       </Box>
       <Box
